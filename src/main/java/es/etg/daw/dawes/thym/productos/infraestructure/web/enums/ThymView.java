@@ -7,9 +7,9 @@ package es.etg.daw.dawes.thym.productos.infraestructure.web.enums;
 public enum ThymView {
 
     PRODUCT_LIST("productos-lista"),
-    PRODUCT_FORM("productos-formulario"),
-    PRODUCT_CREATED("productos-creado"),
-    PRODUCT_DETAIL("productos-detalle"),
+    PRODUCT_FORM("producto-formulario"),
+    PRODUCT_CREATED("producto-creado"),
+    PRODUCT_DETAIL("producto-detalle"),
     ERROR_GENERIC("error/error-general");
 
     private final String path;
