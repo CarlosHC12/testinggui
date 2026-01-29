@@ -24,10 +24,9 @@ public class CreateProductoUseCase {
 
 		Producto producto = Producto.builder()
 				.nombre(comando.nombre())
-				.precio(comando.precio())
-				.createdAt(LocalDateTime.now()).build();
-		productoRepository.save(producto);
-		return producto;
+				.precio(comando.precio()).build();
+				
+		return productoRepository.save(producto);
 
 	}
 }

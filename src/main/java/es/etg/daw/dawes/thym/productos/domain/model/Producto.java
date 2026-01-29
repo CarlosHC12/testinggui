@@ -16,7 +16,7 @@ public class Producto {
     private ProductoId id;
     private String nombre;
     private double precio;
-    private LocalDateTime createdAt;
+    
 
 
 

@@ -42,14 +42,21 @@ public class ProductoViewController {
         return ThymView.PRODUCT_FORM.getPath(); //Devuelvo la vista que carga el formulario
     }
 
-    // Este método crea el producto y devuelve la vista del mensaje de creado
     @PostMapping(WebRoutes.PRODUCTOS_NUEVO)
-    public String crearProducto(@RequestParam String nombre,
-            @RequestParam double precio,
-            Model model){
-            
-            createProductoService.createProducto(new CreateProductoCommand(nombre, precio));
-        
-        return ThymView.PRODUCT_CREATED.getPath();
-    }
+public String crearProducto(@RequestParam String nombre,
+                            @RequestParam double precio,
+                            Model model){
+    Producto productoCreado = createProductoService.createProducto(
+        new CreateProductoCommand(nombre, precio)
+    );
+
+    // Pasamos el producto creado a la vista
+    model.addAttribute(ModelAttribute.SINGLE_PRODUCT.getName(), productoCreado);
+
+    return ThymView.PRODUCT_CREATED.getPath(); // muestra la página de confirmación
+}
+
+
+
+    
 }
