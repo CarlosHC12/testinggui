@@ -70,6 +70,29 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!-- Openhtmltopdf-->
+		<dependency>
+			<groupId>io.github.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-pdfbox</artifactId>
+			<version>1.1.36</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xhtmlrenderer</groupId>
+			<artifactId>flying-saucer-pdf-itext5</artifactId>
+			<version>9.1.22</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-pdfbox</artifactId>
+			<version>1.1.36</version>
+		</dependency>
+		<!-- Dependencia pdf-->
+		<dependency>
+			<groupId>org.xhtmlrenderer</groupId>
+			<artifactId>flying-saucer-pdf-itext5</artifactId>
+			<version>9.1.22</version>
+		</dependency>
 	</dependencies>
 
 	<build>

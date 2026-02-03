@@ -24,8 +24,14 @@ public class ProductoMapper {
 
 
     public static ProductoRequest toRequest(Producto p){
-        return new ProductoRequest(p.getId().getValue(), p.getNombre(), p.getPrecio(), 1);
-    }
+    return new ProductoRequest(
+        null, // 👈 o elimina el campo id del request
+        p.getNombre(),
+        p.getPrecio(),
+        1
+    );
+}
+
 
 }
     

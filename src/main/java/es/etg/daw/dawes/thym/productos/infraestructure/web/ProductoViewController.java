@@ -1,10 +1,16 @@
 package es.etg.daw.dawes.thym.productos.infraestructure.web;
 
+import java.io.OutputStream;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
 
 import es.etg.daw.dawes.thym.productos.application.command.CreateProductoCommand;
 import es.etg.daw.dawes.thym.productos.application.service.CreateProductoService;
@@ -13,6 +19,7 @@ import es.etg.daw.dawes.thym.productos.domain.model.Producto;
 import es.etg.daw.dawes.thym.productos.infraestructure.web.constants.WebRoutes;
 import es.etg.daw.dawes.thym.productos.infraestructure.web.enums.ModelAttribute;
 import es.etg.daw.dawes.thym.productos.infraestructure.web.enums.ThymView;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -42,6 +49,11 @@ public class ProductoViewController {
         return ThymView.PRODUCT_FORM.getPath(); //Devuelvo la vista que carga el formulario
     }
 
+
+    
+    
+
+
     @PostMapping(WebRoutes.PRODUCTOS_NUEVO)
 public String crearProducto(@RequestParam String nombre,
                             @RequestParam double precio,
@@ -56,7 +68,11 @@ public String crearProducto(@RequestParam String nombre,
     return ThymView.PRODUCT_CREATED.getPath(); // muestra la página de confirmación
 }
 
+    
 
+    
+
+    
 
     
 }
