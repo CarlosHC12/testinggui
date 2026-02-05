@@ -89,12 +89,24 @@ td:first-child {
 }
 </style>
 <body>
-     <h1>LISTADO DE PRODUCTOS</h1>
+    
+     <div class="language-selector">
+        <a th:href="@{/web/productos?lang=es}">🇪🇸</a>
+        <a th:href="@{/web/productos(lang=es)}">🇪🇸</a> | 
+        <a th:href="@{/web/productos(lang=en)}">🇬🇧</a> | 
+        <a th:href="@{/web/productos(lang=ar)}">🇲🇦</a>
+    </div>
+
+    <hr>
+    <h1 th:text="#{product.list.title}">LISTADO DE PRODUCTOS</h1>
     <div class="table-container">
-        <a th:href="@{/web/productos/nuevo}">Crear Nuevo</a>
+          <a th:href="@{/web/productos/nuevo}" th:text="#{generic.link.create}">Crear Nuevo</a>
 
         <a th:href="@{/web/productos/pdf}">
-            <img th:src="@{/images/archivo-pdf.png}" alt="Exportar a Pdf" width="50">
+            <img th:src="@{/images/archivo-pdf.png}" 
+                 th:alt="#{generic.link.export.pdf}" 
+                 th:title="#{generic.link.export.pdf}" 
+                 width="50">
         </a>
         
         <table id="tablaProductos">

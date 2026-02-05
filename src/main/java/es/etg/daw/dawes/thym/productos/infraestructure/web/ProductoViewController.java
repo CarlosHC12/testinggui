@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import es.etg.daw.dawes.thym.productos.application.command.CreateProductoCommand;
 import es.etg.daw.dawes.thym.productos.application.service.CreateProductoService;
@@ -29,6 +29,40 @@ public class ProductoViewController {
     
     private final FindProductoService findProductoService;
     private final CreateProductoService createProductoService;
+
+    private final TemplateEngine templateEngine; // Motor de Thymeleaf
+
+     //Listado de Productos http://localhost:8082/web/productos/pdf
+    @GetMapping(WebRoutes.PRODUCTOS_PDF)
+    public void exportarPDF(HttpServletResponse response) throws Exception {
+
+        //Obtengo los datos
+        List<Producto> productos = findProductoService.findAll();
+
+        //Preparar el contexto de Thymeleaf
+        Context context = new Context();
+        context.setVariable("productos", productos);
+
+        //Ya tengo los datos en el contexto de Thymeleaf, ahora le doy la plantilla para que me devuelva
+        //  la plantilla con los datos rellenos (el mismo html que estamos devolviendo al usuario pero ahora lo meto en un String).
+        String htmlContent = templateEngine.process(ThymView.PRODUCT_LIST_PDF.getPath(), context);
+
+
+        //Preparo la respuesta diciendole que voy a devolver un pdf
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=productos.pdf");
+
+        //Llamo a Flying Saurce y le paso el html para que lo transforme en pdf
+        //  el html tiene que estar bien formado (xhtml) o fallará el proceso, cuidado con la plantilla
+        OutputStream outputStream = response.getOutputStream();
+        ITextRenderer renderer = new ITextRenderer();
+        renderer.setDocumentFromString(htmlContent); //Le paso además donde están los archivos css (ruta a la carpeta static)
+        renderer.layout();
+        renderer.createPDF(outputStream);
+        
+        outputStream.close();
+
+    }
 
     //Listado de Productos http://localhost:8082/web/productos
     @GetMapping(WebRoutes.PRODUCTOS_BASE)
