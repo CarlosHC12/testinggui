@@ -91,7 +91,6 @@ td:first-child {
 <body>
     
      <div class="language-selector">
-        <a th:href="@{/web/productos?lang=es}">🇪🇸</a>
         <a th:href="@{/web/productos(lang=es)}">🇪🇸</a> | 
         <a th:href="@{/web/productos(lang=en)}">🇬🇧</a> | 
         <a th:href="@{/web/productos(lang=ar)}">🇲🇦</a>
@@ -100,7 +99,7 @@ td:first-child {
     <hr>
     <h1 th:text="#{product.list.title}">LISTADO DE PRODUCTOS</h1>
     <div class="table-container">
-          <a th:href="@{/web/productos/nuevo}" th:text="#{generic.link.create}">Crear Nuevo</a>
+        <a th:href="@{/web/productos/nuevo}" th:text="#{generic.link.create}">Crear Nuevo</a>
 
         <a th:href="@{/web/productos/pdf}">
             <img th:src="@{/images/archivo-pdf.png}" 
@@ -112,13 +111,12 @@ td:first-child {
         <table id="tablaProductos">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
+                    <th th:text="#{product.table.header.id}">ID</th>
+                    <th th:text="#{product.table.header.name}">Nombre</th>
+                    <th th:text="#{product.table.header.price}">Precio</th>
                 </tr>
             </thead>
             <tbody id="cuerpoTabla">
-                <!-- Para cada elemento p de la lista de productos (que metimos en el modelo del controlador con el nombre "productos")-->
                 <tr th:each="p : ${productos}">
                     <td th:text="${p.id}">1</td>
                     <td th:text="${p.nombre}">Producto Ejemplo</td>
